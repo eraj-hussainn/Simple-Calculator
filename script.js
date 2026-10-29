@@ -1,81 +1,81 @@
-const screen = document.getElementById("screen");
+// const screen = document.getElementById("screen");
 
-function appendValue(value){
+// function appendValue(value){
 
-    screen.value += value;
+//     screen.value += value;
 
-}
+// }
 
-function clearScreen(){
+// function clearScreen(){
 
-    screen.value = "";
+//     screen.value = "";
 
-}
+// }
 
-function deleteLast(){
+// function deleteLast(){
 
-    screen.value = screen.value.slice(0,-1);
+//     screen.value = screen.value.slice(0,-1);
 
-}
+// }
 
-function calculate(){
+// function calculate(){
 
-    if(screen.value==="") return;
+//     if(screen.value==="") return;
 
-    try{
+//     try{
 
-        screen.value = eval(screen.value);
+//         screen.value = eval(screen.value);
 
-    }
+//     }
 
-    catch{
+//     catch{
 
-        screen.value = "Error";
+//         screen.value = "Error";
 
-        setTimeout(()=>{
+//         setTimeout(()=>{
 
-            screen.value="";
+//             screen.value="";
 
-        },1000);
+//         },1000);
 
-    }
+//     }
 
-}
+// }
 
-// Keyboard Support
+// // Keyboard Support
 
-document.addEventListener("keydown",(e)=>{
+// document.addEventListener("keydown",(e)=>{
 
-    const key=e.key;
+//     const key=e.key;
 
-    if((key>='0'&&key<='9')||
-       key==='+'||
-       key==='-'||
-       key==='*'||
-       key==='/'||
-       key==='.'||
-       key==='%'){
+//     if((key>='0'&&key<='9')||
+//        key==='+'||
+//        key==='-'||
+//        key==='*'||
+//        key==='/'||
+//        key==='.'||
+//        key==='%'){
 
-        appendValue(key);
+//         appendValue(key);
 
-    }
+//     }
 
-    else if(key==="Enter"){
+//     else if(key==="Enter"){
 
-        calculate();
+//         calculate();
 
-    }
+//     }
 
-    else if(key==="Backspace"){
+//     else if(key==="Backspace"){
 
-        deleteLast();
+//         deleteLast();
 
-    }
+//     }
 
-    else if(key==="Escape"){
+//     else if(key==="Escape"){
 
-        clearScreen();
+//         clearScreen();
 
-    }
+//     }
 
-});
+// });
