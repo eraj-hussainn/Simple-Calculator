@@ -1,107 +1,58 @@
 
-const screen = document.getElementById("screen");
-
-
-// ADD VALUE FUNCTION
-
-function appendValue(value) {
-
-    screen.value += value;
-
-}
-
-
-// CLEAR SCREEN FUNCTION
-
-function clearScreen() {
-
-    screen.value = "";
-
-}
-
-
-// DELETE LAST VALUE
-
-function deleteLast() {
-
-    screen.value = screen.value.slice(0, -1);
-
-}
-
-
-// CALCULATE FUNCTION
-
 function calculate() {
 
-    if (screen.value === "") {
+    var expression = screen.value;
+
+    if (expression === "") {
         return;
     }
 
-    try {
+    var operator;
+    var numbers;
 
-        screen.value = eval(screen.value);
-
+    if (expression.includes("+")) {
+        operator = "+";
+    }
+    else if (expression.includes("-")) {
+        operator = "-";
+    }
+    else if (expression.includes("*")) {
+        operator = "*";
+    }
+    else if (expression.includes("/")) {
+        operator = "/";
+    }
+    else {
+        return;
     }
 
-    catch {
+    numbers = expression.split(operator);
 
-        screen.value = "Error";
+    var num1 = Number(numbers[0]);
+    var num2 = Number(numbers[1]);
 
-        setTimeout(function() {
+    if (numbers[0] === "" || numbers[1] === "") {
+        return;
+    }
 
-            screen.value = "";
+    if (operator === "+") {
+        screen.value = num1 + num2;
+    }
+    else if (operator === "-") {
+        screen.value = num1 - num2;
+    }
+    else if (operator === "*") {
+        screen.value = num1 * num2;
+    }
+    else if (operator === "/") {
 
-        }, 1000);
+        if (num2 === 0) {
+            screen.value = "Cannot divide by zero";
+        }
+        else {
+            screen.value = num1 / num2;
+        }
 
     }
 
 }
-
-
-// KEYBOARD SUPPORT
-
-document.addEventListener("keydown", function(e) {
-
-    var key = e.key;
-
-    if (
-        (key >= "0" && key <= "9") ||
-        key === "+" ||
-        key === "-" ||
-        key === "*" ||
-        key === "/" ||
-        key === "." ||
-        key === "%"
-    ) {
-
-        appendValue(key);
-
-    }
-
-    else if (key === "Enter") {
-
-        calculate();
-
-    }
-
-    else if (key === "Backspace") {
-
-        deleteLast();
-
-    }
-
-    else if (key === "Escape") {
-
-        clearScreen();
-
-    }
-
-});
-// if (
-//     screen.value.endsWith("+") ||
-//     screen.value.endsWith("-") ||
-//     screen.value.endsWith("*") ||
-//     screen.value.endsWith("/")
-// ) {
-//     return;
-// }
